@@ -1,40 +1,48 @@
 package com.example.assignment2;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.os.Bundle;
 
-import androidx.annotation.NonNull;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ADApt1 extends RecyclerView.Adapter<HOLde1>{
+public class Customer extends AppCompatActivity {
 
-    private int[] imageData;
-    private String[] data;
+    private Context context;
 
-    public ADApt1(int[] imageData, String[] data) {
-        this.imageData = imageData;
-        this.data = data;
-    }
+    RecyclerView recyclerView;
 
-    @NonNull
-    @Override
-    public HOLde1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_view,parent,false);
-        return new HOLde1(view);
-    }
 
     @Override
-    public void onBindViewHolder(@NonNull HOLde1 holder, int position) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_customer);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cust), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
-        holder.tv.setText(data[position]);
-        holder.imageView.setImageResource(imageData[position]);
 
-    }
+        String data[] = {"Bike1", "Bike2","Bike3","Bike4","Bike1", "Bike2","Bike3",
+                "Bike4","Bike1", "Bike2","Bike3","Bike4","Bike1", "Bike2","Bike3","Bike4",
+                "Bike1", "Bike2","Bike3","Bike4"};
+        int[] imageData = {R.drawable.bike1, R.drawable.bike2, R.drawable.bike3, R.drawable.bike4,
+                R.drawable.bike1, R.drawable.bike2, R.drawable.bike3, R.drawable.bike4,
+                R.drawable.bike1, R.drawable.bike2, R.drawable.bike3, R.drawable.bike4,
+                R.drawable.bike1, R.drawable.bike2, R.drawable.bike3, R.drawable.bike4,
+                R.drawable.bike1, R.drawable.bike2, R.drawable.bike3, R.drawable.bike4,};
 
-    @Override
-    public int getItemCount() {
-        return imageData.length;
+        recyclerView = findViewById(R.id.rec_view);
+        ADApt1 adapter = new ADApt1(imageData, data);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
     }
 }
