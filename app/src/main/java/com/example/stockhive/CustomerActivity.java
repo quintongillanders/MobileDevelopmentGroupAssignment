@@ -11,10 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.stockhive.ADApt1;
-import com.example.stockhive.R;
-
-public class Customer extends AppCompatActivity {
+public class CustomerActivity extends AppCompatActivity {
 
     private Context context;
 
