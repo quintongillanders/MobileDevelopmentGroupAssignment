@@ -33,11 +33,11 @@
         android:hint="Date Of Birth"/>
 
     <EditText
+        android:id="@+id/edtpassReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtpassReg"
-        android:inputType="textPersonName"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:inputType="textPersonName" />
 
     <EditText
         android:layout_width="match_parent"

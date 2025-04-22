@@ -15,8 +15,8 @@
         android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="50sp" />
+        android:text="Welcome to StockHive"
+        android:textSize="35sp" />
 
     <EditText
         android:id="@+id/email_login"
