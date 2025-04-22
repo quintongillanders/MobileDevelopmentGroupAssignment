@@ -1,4 +1,4 @@
-package com.example.assignment2;
+package com.example.stockhive;
 
 import android.content.Context;
 import android.os.Bundle;
