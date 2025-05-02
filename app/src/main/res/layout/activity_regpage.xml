@@ -6,24 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="#0D8DF4"
     tools:context=".REGpage">
 
 
-
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/edtfullnameReg"
-        android:inputType="textPersonName"
-        android:hint="Full name"/>
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Full name"
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/edtemailaddReg"
-        android:inputType="textPersonName"
-        android:hint="Email address"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email address"
+        android:inputType="textPersonName" />
 
     <EditText
         android:layout_width="match_parent"

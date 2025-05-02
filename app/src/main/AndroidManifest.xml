@@ -12,10 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StockHive"
         tools:targetApi="31">
-
-        <activity android:name=".REGpage"/>
-        <activity android:name=".CustomerActivity"/>
-
+        <activity
+            android:name=".ProductAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderAdminLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReportAdminLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductAdminLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserAdminLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdminSelectActivity"
+            android:exported="false" />
+        <activity android:name=".REGpage" />
+        <activity android:name=".CustomerActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

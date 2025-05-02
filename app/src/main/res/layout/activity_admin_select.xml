@@ -8,58 +8,50 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="#0D8DF4"
-    tools:context=".MainActivity">
-
+    tools:context=".AdminSelectActivity">
 
     <TextView
-        android:id="@+id/Login"
+        android:id="@+id/selectAdminType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to StockHive"
+        android:text="Please select Admin Type"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:textSize="35sp" />
-
-    <EditText
-        android:id="@+id/email_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email: "
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:inputType="textPersonName"
-        android:textSize="25sp" />
-
-    <EditText
-        android:id="@+id/pass_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password: "
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:inputType="textPersonName"
-        android:textSize="25sp" />
+        android:textSize="35sp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Report Admin"
         android:textSize="25sp"
-        android:id="@+id/btnLogin"/>
+        android:id="@+id/btnReportAdmin"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login as admin"
+        android:text="Product Admin"
         android:textSize="25sp"
-        android:id="@+id/btnAdmin"/>
+        android:id="@+id/btnProductAdmin"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Order Admin"
         android:textSize="25sp"
-        android:id="@+id/btnRegister"/>
+        android:id="@+id/btnOrderAdmin"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Admin"
+        android:textSize="25sp"
+        android:id="@+id/btnUserAdmin"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to login"
+        android:textSize="25sp"
+        android:id="@+id/btnBack"/>
 
 </LinearLayout>

@@ -70,17 +70,17 @@ public class REGpage extends AppCompatActivity {
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnSuccessListener(authResult -> {
                             String uid = firebaseAuth.getUid();
-                            Map<String, Object> customer = new HashMap<>();
-                            customer.put("fullName", fullName);
-                            customer.put("email", email);
-                            customer.put("dob", dob);
-                            customer.put("phone", phone);
-                            customer.put("address", address);
-                            customer.put("role", "customer");
+                            Map<String, Object> consumer = new HashMap<>();
+                            consumer.put("fullName", fullName);
+                            consumer.put("email", email);
+                            consumer.put("dob", dob);
+                            consumer.put("phone", phone);
+                            consumer.put("address", address);
+                            consumer.put("role", "consumer");
 
                             db.collection("Users")
                                     .document(uid)
-                                    .set(customer)
+                                    .set(consumer)
                                     .addOnSuccessListener(unused -> {
                                         Toast.makeText(REGpage.this, "Registration Success!", Toast.LENGTH_SHORT).show(); // Successfully registered new user
                                         txtdisplayRegInfo.setText("Welcome, " + fullName + "!"); //  welcome the new user
