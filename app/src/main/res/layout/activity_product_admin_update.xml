@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#0D8DF4"
+    tools:context=".ProductAdminUpdateActivity">
+
+    <TextView
+        android:id="@+id/addProductText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Product"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="35sp" />
+
+
+    <Spinner
+        android:id="@+id/bikeList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:spinnerMode="dropdown"
+        android:visibility="visible"/>
+
+    <EditText
+        android:id="@+id/Colour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Colour"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/Mileage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mileage"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Model"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Product"
+        android:textSize="25sp"
+        android:id="@+id/btnUpdateProduct"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textSize="25sp"
+        android:id="@+id/btnBack"/>
+
+
+</LinearLayout>
