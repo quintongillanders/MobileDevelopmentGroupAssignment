@@ -71,7 +71,6 @@ public class ProductAdminDeleteActivity extends AppCompatActivity {
             }
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bikes);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             bikeList.setAdapter(adapter);
         });
 

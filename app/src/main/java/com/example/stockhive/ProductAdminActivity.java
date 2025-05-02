@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ProductAdminActivity extends AppCompatActivity {
 
-    Button btnaddProduct, btnUpdateProduct, btnDeleteProduct, btnLogout;
+    Button btnaddProduct, btnDeleteProduct, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,6 @@ public class ProductAdminActivity extends AppCompatActivity {
         });
 
         btnaddProduct = findViewById(R.id.btnAdd);
-        btnUpdateProduct = findViewById(R.id.btnUpdate);
         btnDeleteProduct = findViewById(R.id.btnDelete);
         btnLogout = findViewById(R.id.btnLogout);
 
@@ -42,15 +41,6 @@ public class ProductAdminActivity extends AppCompatActivity {
             }
         });
 
-        btnUpdateProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProductAdminActivity.this, ProductAdminUpdateActivity.class);
-                startActivity(i);
-                Toast.makeText(ProductAdminActivity.this, "Update Product clicked", Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
         btnDeleteProduct.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,9 +16,6 @@
             android:name=".ProductAdminDeleteActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductAdminUpdateActivity"
-            android:exported="false" />
-        <activity
             android:name=".ProductAdminAddActivity"
             android:exported="false" />
         <activity
