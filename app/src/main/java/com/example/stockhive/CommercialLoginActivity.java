@@ -13,16 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ProductAdminLoginActivity extends AppCompatActivity {
 
-    Button btnLoginPAdmin, btnBack;
-    EditText edtEmailPAdminLogin, edtEmailPAdminPass;
-
+public class CommercialLoginActivity extends AppCompatActivity {
+    Button btnLogin, btnBack;
+    EditText edtComLogin, edtComPass;
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
 
@@ -30,9 +27,9 @@ public class ProductAdminLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_product_admin_login);
+        setContentView(R.layout.activity_commercial_login);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = firebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -41,19 +38,19 @@ public class ProductAdminLoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        btnLoginPAdmin = findViewById(R.id.btnProductAdminLogin);
+        btnLogin = findViewById(R.id.btnCommercialLogin);
         btnBack = findViewById(R.id.btnBack);
-        edtEmailPAdminLogin = findViewById(R.id.email_Padmin_login);
-        edtEmailPAdminPass = findViewById(R.id.pass_admin_login);
+        edtComLogin = findViewById(R.id.email_commercial_login);
+        edtComPass = findViewById(R.id.pass_commercial_login);
 
-        btnLoginPAdmin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = edtEmailPAdminLogin.getText().toString().trim();
-                String password = edtEmailPAdminPass.getText().toString().trim();
+                String email = edtComLogin.getText().toString().trim();
+                String password = edtComPass.getText().toString().trim();
 
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(ProductAdminLoginActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CommercialLoginActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -65,27 +62,27 @@ public class ProductAdminLoginActivity extends AppCompatActivity {
                                     .addOnSuccessListener(documentSnapshot -> {
                                         if (documentSnapshot.exists()) {
                                             String role = documentSnapshot.getString("role");
-                                            if ("productadmin".equals(role)) {
-                                                Toast.makeText(ProductAdminLoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(ProductAdminLoginActivity.this, ProductAdminActivity.class));
+                                            if ("commercial".equals(role)) {
+                                                Toast.makeText(CommercialLoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(CommercialLoginActivity.this, CommercialUserActivity.class));
                                                 finish();
                                             } else {
                                                 firebaseAuth.signOut(); // prevents access for wrong roles
-                                                Toast.makeText(ProductAdminLoginActivity.this, "Sorry, you are not a product admin", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(CommercialLoginActivity.this, "Sorry, you are not a commerical user", Toast.LENGTH_SHORT).show();
                                             }
                                         } else {
                                             firebaseAuth.signOut();
-                                            Toast.makeText(ProductAdminLoginActivity.this, "User role not found", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(CommercialLoginActivity.this, "User role not found", Toast.LENGTH_SHORT).show();
 
                                         }
                                     })
                                     .addOnFailureListener(e -> {
                                         firebaseAuth.signOut();
-                                        Toast.makeText(ProductAdminLoginActivity.this, "Failed to fetch user data", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CommercialLoginActivity.this, "Failed to fetch user data", Toast.LENGTH_SHORT).show();
                                     });
                         })
                         .addOnFailureListener(e -> {
-                            Toast.makeText(ProductAdminLoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show(); // if username or password is incorrect
+                            Toast.makeText(CommercialLoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show(); // if username or password is incorrect
                         });
             }
         });
@@ -93,12 +90,17 @@ public class ProductAdminLoginActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ProductAdminLoginActivity.this, AdminSelectActivity.class);
+                Intent i = new Intent(CommercialLoginActivity.this, MainActivity.class);
                 finish();
-                Toast.makeText(ProductAdminLoginActivity.this, "Back button clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CommercialLoginActivity.this, "Back button clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
+
+
+
+
+
 
 

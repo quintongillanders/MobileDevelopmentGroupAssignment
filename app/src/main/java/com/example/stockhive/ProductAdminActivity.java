@@ -52,7 +52,14 @@ public class ProductAdminActivity extends AppCompatActivity {
             }
         });
 
-
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProductAdminActivity.this, MainActivity.class);
+                startActivity(i);
+                Toast.makeText(ProductAdminActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }

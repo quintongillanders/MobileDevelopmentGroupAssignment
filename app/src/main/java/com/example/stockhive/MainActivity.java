@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button btn_REGIS, btn_LOGIN, btnLoginAdmin;
+    Button btn_REGIS, btn_LOGIN, btnLoginAdmin, btnLoginCommercial;
     EditText edtEmail, edtPassword;
     private FirebaseAuth firebaseAuth;
 
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnLoginAdmin = findViewById(R.id.btnAdmin);
         edtEmail = findViewById(R.id.email_login);
         edtPassword = findViewById(R.id.pass_login);
+        btnLoginCommercial = findViewById(R.id.btnLoginCommercial);
 
         btn_LOGIN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, AdminSelectActivity.class);
                 startActivity(i);
                 Toast.makeText(MainActivity.this, "Login as admin clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnLoginCommercial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, CommercialLoginActivity.class);
+                startActivity(i);
+                Toast.makeText(MainActivity.this, "Commercial login clicked", Toast.LENGTH_SHORT).show();
             }
         });
 

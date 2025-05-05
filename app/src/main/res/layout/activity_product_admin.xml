@@ -10,7 +10,6 @@
     android:background="#0D8DF4"
     tools:context=".ProductAdminActivity">
 
-
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"

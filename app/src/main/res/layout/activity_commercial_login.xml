@@ -8,20 +8,19 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="#0D8DF4"
-    tools:context=".MainActivity">
-
+    tools:context=".CommercialLoginActivity">
 
     <TextView
-        android:id="@+id/Login"
+        android:id="@+id/commercialWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to StockHive"
-        android:textStyle="bold"
+        android:text="Commercial Login:"
         android:textColor="@color/white"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/email_login"
+        android:id="@+id/email_commercial_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email: "
@@ -31,7 +30,7 @@
         android:textSize="25sp" />
 
     <EditText
-        android:id="@+id/pass_login"
+        android:id="@+id/pass_commercial_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password: "
@@ -45,29 +44,14 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="25sp"
-        android:id="@+id/btnLogin"/>
+        android:id="@+id/btnCommercialLogin"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Commercial Login"
+        android:text="Back"
         android:textSize="25sp"
-        android:id="@+id/btnLoginCommercial"/>
-
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login as admin"
-        android:textSize="25sp"
-        android:id="@+id/btnAdmin"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:textSize="25sp"
-        android:id="@+id/btnRegister"/>
+        android:id="@+id/btnBack"/>
 
 
 </LinearLayout>
