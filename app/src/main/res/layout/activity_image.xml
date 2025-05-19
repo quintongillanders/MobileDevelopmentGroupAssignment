@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImageActivity">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_back"
+        android:text="Back"/>
+
+
+    <ImageView
+        android:id="@+id/fullImageView"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:scaleType="centerInside"
+        android:layout_below="@+id/btn_back"
+        />
+
+
+    <TextView
+        android:id="@+id/fullproductname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn_back"
+        android:textSize="25sp"
+        android:layout_below="@+id/fullImageView"
+        />
+
+
+    <TextView
+        android:id="@+id/fulldescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn_back"
+        android:textSize="25sp"
+        android:layout_below="@+id/fullproductname"
+        />
+
+
+    <TextView
+        android:id="@+id/fullprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/btn_back"
+        android:textSize="25sp"
+        android:layout_below="@+id/fulldescription"
+        />
+
+
+
+
+
+
+</RelativeLayout>

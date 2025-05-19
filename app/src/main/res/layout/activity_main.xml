@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome To Pete's Electronic Goods"
+        android:textSize="30dp"
+        android:gravity="center_vertical"
+        android:textColor="#9E9D24"/>
+
+
+    <EditText
+        android:id="@+id/email_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email: "
+        android:inputType="textPersonName"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:id="@+id/pass_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password: "
+        android:inputType="textPassword"
+        android:textSize="25sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="25sp"
+        android:id="@+id/btnLogin"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="25sp"
+        android:id="@+id/btnRegister"/>
+
+
+</LinearLayout>
