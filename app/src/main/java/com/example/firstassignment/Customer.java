@@ -56,7 +56,8 @@ public class Customer extends AppCompatActivity {
 
 
 
-
+        // todo: categorize each product into separate vendors like devices, accessories, and extras.
+        // todo: finalize vendor names
 
         String productname[] = {"Smartphone X10", "Laptop Pro 15", "Wireless Earbuds", "4K Monitor", "Gaming Mouse",
                 "Mechanical Keyboard", "Fitness Tracker", "Bluetooth Speaker", "Tablet Mini 8", "Smartwatch Z",
