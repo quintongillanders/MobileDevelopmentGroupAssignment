@@ -7,3 +7,4 @@
 <h2>Searching function works and filters based on product name and description</h2>
 <h2>CartItems are able to be added but are not yet displayed, and clearing the cart does not premanently remove them</h2>
 <h2>Bypassed authentication by starting the customer activity immediately in MainActivity</h2>
+![image](https://github.com/user-attachments/assets/4384f795-7ba5-4f71-abff-76e2e1c1caca)
