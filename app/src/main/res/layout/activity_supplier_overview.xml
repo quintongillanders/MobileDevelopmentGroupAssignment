@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#2196F3"
-    tools:context=".SupplierActivity">
+    tools:context=".SupplierOverviewActivity">
 
     <Button
         android:layout_width="wrap_content"
@@ -21,40 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Welcome Supplier"
+        android:text="Product Overview"
         android:textSize="35dp"
         android:textStyle="bold"
         android:layout_margin="50dp"
         />
 
-    <Button
-        android:id="@+id/overviewBtn"
-        android:layout_width="300dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Product Overview"
-        android:textSize="20dp"
-        android:layout_gravity="center"
         android:layout_margin="10dp"
-        />
-
-    <Button
-        android:id="@+id/addProdBtn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Add Product"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        />
-
-    <Button
-        android:id="@+id/mangProdBtn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Manage Products"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        />
+        android:id="@+id/rv_view">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>
