@@ -9,52 +9,53 @@
     android:background="#2196F3"
     tools:context=".SupplierActivity">
 
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:id="@+id/btn_suplogout"
-        android:onClick="logoutsup"
-        android:layout_margin="10dp"/>
+        android:onClick="logoutsup"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Welcome Supplier"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:layout_margin="50dp"
-        />
 
-    <Button
-        android:id="@+id/overviewBtn"
-        android:layout_width="300dp"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Product Overview"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        />
+        android:hint="Type Item Name"
+        android:id="@+id/edt_item"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Item Quantity"
+        android:id="@+id/edt_quantity"
+        android:textSize="25sp"/>
 
     <Button
-        android:id="@+id/addProdBtn"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Product"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        />
+        android:text="ADD"
+        android:id="@+id/btn_add"
+        android:onClick="addItem"/>
 
     <Button
-        android:id="@+id/mangProdBtn"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Manage Products"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        />
+        android:text="Delete Items"
+        android:id="@+id/btn_deleteall"
+        android:onClick="deleteItems"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_view">
+
+
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </LinearLayout>

@@ -49,14 +49,14 @@
         android:layout_toEndOf="@+id/imageview"
         android:layout_below="@+id/price"
         android:text="Add To Cart"
-        android:id="@+id/btn_cart_add"/>
+        android:id="@+id/btn_cart"/>
 
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@+id/btn_cart_add"
+        android:layout_below="@+id/btn_cart"
         android:layout_marginTop="10dp"
         android:background="#DAD8D8"/>
 
