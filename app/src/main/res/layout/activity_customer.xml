@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/btn_signout"
+        android:id="@+id/customer_btn_signout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -20,11 +20,11 @@
         android:layout_marginTop="7dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:onClick="logoutcust"
+        android:onClick="logout"
         android:text="Sign Out" />
 
     <Button
-        android:id="@+id/viewCart"
+        android:id="@+id/customer_btn_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Cart"
@@ -34,10 +34,10 @@
 
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/customer_sv_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewCart"
+        android:layout_below="@id/customer_btn_cart"
         android:layout_marginTop="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
@@ -48,8 +48,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerview"
-        android:layout_below="@id/searchView"
+        android:id="@+id/customer_rv_products"
+        android:layout_below="@id/customer_sv_products"
         android:layout_marginTop="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>

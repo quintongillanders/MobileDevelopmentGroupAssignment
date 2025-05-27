@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.graphics.Insets;
@@ -43,13 +47,13 @@ public class Customer extends AppCompatActivity {
             return insets;
         });
 
-        Button viewCartButton = findViewById(R.id.viewCart);
+        Button viewCartButton = findViewById(R.id.customer_btn_cart);
         viewCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Customer.this, CartActivity.class);
                 intent.putExtra("cartItems", cartItems);
-                startActivity(intent);
+                getReturnCartItemsLauncher.launch(intent);
             }
         });
 
@@ -68,13 +72,13 @@ public class Customer extends AppCompatActivity {
         product = new Product("Product j4", "java", 100.0, image);
         products.add(product);
 
-        recyclerView = findViewById(R.id.recyclerview);
-        ADApt1 adapter = new ADApt1(products, this);
+        recyclerView = findViewById(R.id.customer_rv_products);
+        ProductAdapter adapter = new ProductAdapter(products, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
 
-        SearchView searchView = findViewById(R.id.searchView);
+        SearchView searchView = findViewById(R.id.customer_sv_products);
         searchView.setQueryHint("Search products...");
         searchView.setIconified(false);
 
@@ -113,30 +117,44 @@ public class Customer extends AppCompatActivity {
 
     public void addToCart(CartItem item) {
         cartItems.add(item);
-        Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, item.getName() + " added to cart", Toast.LENGTH_SHORT).show();
         updateCartIcon();
     }
 
 
     private void updateCartIcon() {
-        Button viewCartButton = findViewById(R.id.viewCart);
+        Button viewCartButton = findViewById(R.id.customer_btn_cart);
         viewCartButton.setText("View Cart (" + cartItems.size() + ")");
     }
 
-    public void logoutcust(View view) {
+    public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    ActivityResultLauncher<Intent> getReturnCartItemsLauncher = registerForActivityResult(
+            new StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    Intent intent = result.getData();
+                    cartItems = (ArrayList<CartItem>) intent.getSerializableExtra("cartItems");
+                    updateCartIcon();
+                    showCartSummary();
+                }
+            }
+    );
 
-        if (requestCode == REQUEST_CODE_CART && resultCode == RESULT_OK && data != null) {
-            cartItems = (ArrayList<CartItem>) data.getSerializableExtra("cartItems");
-            updateCartIcon();
-            showCartSummary();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        Toast.makeText(this, "onActivityResult", Toast.LENGTH_SHORT).show();
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//
+//        if (requestCode == REQUEST_CODE_CART && resultCode == RESULT_OK && data != null) {
+//            cartItems = (ArrayList<CartItem>) data.getSerializableExtra("cartItems");
+//            updateCartIcon();
+//            showCartSummary();
+//        }
+//    }
 }

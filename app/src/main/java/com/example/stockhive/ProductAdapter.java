@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ADApt1 extends RecyclerView.Adapter<HOLde1> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     private ArrayList<Product> products;
     private ArrayList<Product> productsBackup;
@@ -21,7 +21,7 @@ public class ADApt1 extends RecyclerView.Adapter<HOLde1> {
 
 
 
-    public ADApt1(ArrayList<Product> products, Context context) {
+    public ProductAdapter(ArrayList<Product> products, Context context) {
         this.products = products;
         this.context = context;
         this.productsBackup = products;
@@ -33,23 +33,23 @@ public class ADApt1 extends RecyclerView.Adapter<HOLde1> {
 
     @NonNull
     @Override
-    public HOLde1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_view, parent, false);
-        return new HOLde1(view);
+        View view = inflater.inflate(R.layout.product_view, parent, false);
+        return new ProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HOLde1 holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         product = products.get(position);
-        holder.productView.setText("Product Name:" + product.getName());
-        holder.descriptionView.setText("Model: " + product.getDescription());
-        holder.imageView.setImageResource(product.getImage().src);
-        holder.priceView.setText("Price: $" + String.format("%.2f", product.getPrice()));
+        holder.name.setText("Product Name:" + product.getName());
+        holder.description.setText("Model: " + product.getDescription());
+        holder.image.setImageResource(product.getImage().src);
+        holder.price.setText("Price: $" + String.format("%.2f", product.getPrice()));
 
 
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int currentPosition = holder.getAdapterPosition();
@@ -69,9 +69,8 @@ public class ADApt1 extends RecyclerView.Adapter<HOLde1> {
 
 
 
-
-        holder.cartAdd.setOnClickListener(v -> {
-            CartItem cartItem = new CartItem(product.getImage().src, product.getName(), product.getDescription(), product.getPrice());
+        CartItem cartItem = new CartItem(product);
+        holder.btnAdd.setOnClickListener(v -> {
             ((Customer) context).addToCart(cartItem);
         });
 
