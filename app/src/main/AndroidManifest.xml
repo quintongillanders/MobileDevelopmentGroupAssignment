@@ -12,10 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StockHive"
         tools:targetApi="31">
-        <activity android:name=".Customer"/>
-        <activity android:name=".Admin"/>
-        <activity android:name=".CartActivity"/>
-        <activity android:name=".ImageActivity"/>
+        <activity
+            android:name=".SupplierManageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SupplierAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SupplierOverviewActivity"
+            android:exported="false" />
+        <activity android:name=".Customer" />
+        <activity android:name=".Admin" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".ImageActivity" />
         <activity
             android:name=".CustomerActivity"
             android:exported="false" />

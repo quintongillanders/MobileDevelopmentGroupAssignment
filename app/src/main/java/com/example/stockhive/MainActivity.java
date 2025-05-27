@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Intent intent = new Intent(MainActivity.this, Customer.class);
+       Intent intent = new Intent(MainActivity.this, Admin.class);
         startActivity(intent);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     startActivity(new Intent(MainActivity.this, CustomerActivity.class));
                                 }
-                                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                                Intent intent = new Intent(MainActivity.this, Customer.class);
                                 startActivity(intent);
                                 finish();
                             } else {
