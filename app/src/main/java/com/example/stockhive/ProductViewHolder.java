@@ -22,6 +22,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         price = itemView.findViewById(R.id.product_tv_price);
         btnAdd = itemView.findViewById(R.id.product_btn_add);
         btnDelete = itemView.findViewById(R.id.btn_delete);
+        btnDelete = itemView.findViewById(R.id.product_btn_delete);
 
 //        itemnameTV = itemView.findViewById(R.id.textview_itemname);
 //        itemquantityTV = itemView.findViewById(R.id.textview_itemquantity);
