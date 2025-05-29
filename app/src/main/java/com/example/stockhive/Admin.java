@@ -24,11 +24,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Admin extends AppCompatActivity {
-
+// Admin Activity in progress.
     ListView userList;
     ArrayList<String> userEmails = new ArrayList<>();
     ArrayList<String> userIds = new ArrayList<>();
     DatabaseReference dbRef;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class Admin extends AppCompatActivity {
         userList = findViewById(R.id.userList);
         dbRef = FirebaseDatabase.getInstance().getReference("Users");
 
+       // (in progress) adapter = new ArrayAdapter<>(this, android.R.layout.user_list_item, userEmails);
+        userList.setAdapter(adapter);
         loadUsers();
 
         userList.setOnItemClickListener((parent, view, position, id) -> {

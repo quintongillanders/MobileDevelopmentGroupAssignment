@@ -4,49 +4,24 @@ import java.io.Serializable;
 
 public class CartItem implements Serializable {
 
-    private int image;
-    private String productName;
-    private String description;
-    private double price;
+    private final Product product;
     private int quantity = 1;
 
-    public CartItem(int image, String productName, String description, double price) {
-        this.image = image;
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
+    public CartItem(Product product) {
+        this.product = product;
     }
 
-    public int getImage() {
-        return image;
+    public String getName() {
+        return product.getName();
     }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public String getDescription() {
-        return description;
+        return product.getDescription();
     }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public double getPrice() {
-        return price;
+        return product.getPrice();
     }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public Image getImage() {
+        return product.getImage();
     }
 
     public int getQuantity() {

@@ -9,7 +9,7 @@
     tools:context=".CartActivity">
 
     <TextView
-        android:id="@+id/totalText"
+        android:id="@+id/cart_tv_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total: $0.00"
@@ -20,32 +20,32 @@
         android:paddingBottom="8dp" />
 
     <Button
-        android:id="@+id/backtocart"
+        android:id="@+id/cart_btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back To Items"
-        android:layout_below="@+id/totalText"
+        android:layout_below="@+id/cart_tv_total"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"/>
 
 
     <Button
-        android:id="@+id/clearcart"
+        android:id="@+id/cart_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear Cart"
-        android:layout_below="@+id/backtocart"
+        android:layout_below="@+id/cart_btn_back"
 
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cartRecyclerView"
+        android:id="@+id/cart_rv_products"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/clearcart"
+        android:layout_below="@id/cart_btn_clear"
         android:layout_marginTop="8dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"

@@ -8,22 +8,37 @@
     android:background="#2196F3"
     tools:context=".AdminActivity">
 
+    <TextView
+        android:id="@+id/admintitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Admin Control Panel"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:padding="16dp"/>
+
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log Out"
+        android:text="Logout"
         android:id="@+id/btn_adminlogout"
         android:onClick="logoutadmin"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="12dp"
         tools:ignore="OnClick" />
-
 
 
     <ListView
         android:id="@+id/userList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btn_adminlogout"
-        android:textSize="20dp"/>
+        android:layout_below="@+id/admintitle"
+        android:layout_above="@+id/btn_adminlogout"
+        android:divider="@android:color/white"
+        android:dividerHeight="1dp"
+        android:textSize="18sp"/>
 
 </RelativeLayout>

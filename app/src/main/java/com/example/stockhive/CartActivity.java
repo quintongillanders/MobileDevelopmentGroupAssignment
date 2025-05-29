@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 public class CartActivity extends AppCompatActivity {
 
 
-    TextView totaltext;
-    Button BACKtocart, CLEARcart;
+    TextView tvTotal;
+    Button btnBack, btnClearCart;
     ArrayList<CartItem> cartItems;
 
 
@@ -35,21 +36,22 @@ public class CartActivity extends AppCompatActivity {
         });
 
 
-        BACKtocart = findViewById(R.id.backtocart);
-        CLEARcart = findViewById(R.id.clearcart);
-        totaltext = findViewById(R.id.totalText);
+        btnBack = findViewById(R.id.cart_btn_back);
+        btnClearCart = findViewById(R.id.cart_btn_clear);
+        tvTotal = findViewById(R.id.cart_tv_total);
 
         cartItems = (ArrayList<CartItem>) getIntent().getSerializableExtra("cartItems");
 
         if (cartItems == null) cartItems = new ArrayList<>();
         updateTotal();
 
-        BACKtocart.setOnClickListener(new View.OnClickListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("CartActivity", "Returning cart with " + cartItems.size() + " items.");
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("cartItems", new ArrayList<>(cartItems));
+                Toast.makeText(CartActivity.this, "Returning cart with " + cartItems.size() + " items.", Toast.LENGTH_SHORT).show();
 
 
                 setResult(RESULT_OK, resultIntent);
@@ -62,7 +64,7 @@ public class CartActivity extends AppCompatActivity {
 
 
 
-        CLEARcart.setOnClickListener(new View.OnClickListener() {
+        btnClearCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cartItems.clear();
@@ -87,7 +89,7 @@ public class CartActivity extends AppCompatActivity {
                 Log.e("CartActivity", "Error parsing price: " + priceString, e);
             }
         }
-        totaltext.setText("Total: $" + String.format("%.2f", total));
+        tvTotal.setText("Total: $" + String.format("%.2f", total));
 
     }
 }

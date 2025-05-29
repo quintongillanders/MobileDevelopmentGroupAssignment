@@ -11,17 +11,23 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.util.Supplier;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText edtEmail, edtPass;
-    private Button  btnRegister, btnBack;
+    private Button btnRegister, btnBack;
     private FirebaseAuth auth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         edtEmail = findViewById(R.id.email_login);
         edtPass = findViewById(R.id.pass_login);
@@ -43,50 +50,77 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               String email = edtEmail.getText().toString().trim();
-                                               String password = edtPass.getText().toString().trim();
+            @Override
+            public void onClick(View v) {
+                String email = edtEmail.getText().toString().trim();
+                String password = edtPass.getText().toString().trim();
 
-                                               if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                                                   Toast.makeText(RegisterActivity.this, "Please enter both username and password to register", Toast.LENGTH_SHORT).show();
-                                                   return;
-                                               }
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                    Toast.makeText(RegisterActivity.this, "Please enter both username and password to register", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                                               auth.createUserWithEmailAndPassword(email, password)
-                                                       .addOnCompleteListener(task -> {
-                                                           if (task.isSuccessful()) {
-                                                               FirebaseUser user = auth.getCurrentUser();
-                                                               Toast.makeText(RegisterActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                auth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = auth.getCurrentUser();
+                                String uid = user.getUid();
 
-                                                               if (email.endsWith("@admin.com")) {
-                                                                   startActivity(new Intent(RegisterActivity.this, AdminActivity.class));
-                                                               } else if (email.endsWith("@supplier.com")) {
-                                                                   startActivity(new Intent(RegisterActivity.this, SupplierActivity.class));
-                                                               } else {
-                                                                   startActivity(new Intent(RegisterActivity.this, CustomerActivity.class));
-                                                               }
+                                String role;
+                                if (email.endsWith("@admin.com")) {
+                                    role = "admin";
+                                } else if (email.endsWith("@supplier.com")) {
+                                    role = "supplier";
+                                } else {
+                                    role = "customer";
+                                }
 
-                                                               finish();
-                                                           } else {
-                                                               Toast.makeText(RegisterActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                                           }
+                                Map<String, Object> userData = new HashMap<>();
+                                userData.put("uid", uid);
+                                userData.put("email", email);
+                                userData.put("role", role);
 
-                                                       });
-                                           }
-                                       });
+                                db.collection("Users").document(uid)
+                                        .set(userData)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
+                                            if (role.equals("admin")) {
+                                                startActivity(new Intent(RegisterActivity.this, Admin.class));
+                                            } else if (role.equals("supplier")) {
+                                                startActivity(new Intent(RegisterActivity.this, Supplier.class));
+                                            } else {
+                                                startActivity(new Intent(RegisterActivity.this, Customer.class));
+                                            }
+                                            finish();
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Toast.makeText(RegisterActivity.this, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        });
 
-                btnBack.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                        Toast.makeText(RegisterActivity.this, "Back button clicked", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                });
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
             }
-        }
+        });
+
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                Toast.makeText(RegisterActivity.this, "Back button clicked", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+
+
+        });
+    }
+}
+
+
 
 
 
