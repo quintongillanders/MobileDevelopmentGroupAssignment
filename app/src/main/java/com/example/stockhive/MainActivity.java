@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-//        Intent intent = new Intent(MainActivity.this, Admin.class);
-//        startActivity(intent);
+      Intent intent = new Intent(MainActivity.this, Admin.class);
+        startActivity(intent);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,14 +63,12 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
 
                                 if (email.endsWith("@admin.com")) {
-                                    startActivity(new Intent(MainActivity.this, AdminActivity.class));
+                                    startActivity(new Intent(MainActivity.this, Admin.class));
                                 } else if (email.endsWith("@supplier.com")) {
                                     startActivity(new Intent(MainActivity.this, SupplierActivity.class));
                                 } else {
-                                    startActivity(new Intent(MainActivity.this, CustomerActivity.class));
+                                    startActivity(new Intent(MainActivity.this, Customer.class));
                                 }
-                                Intent intent = new Intent(MainActivity.this, Customer.class);
-                                startActivity(intent);
                                 finish();
                             } else {
                                 Toast.makeText(MainActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();

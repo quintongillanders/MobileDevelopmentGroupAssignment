@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (role.equals("admin")) {
                                                 startActivity(new Intent(RegisterActivity.this, Admin.class));
                                             } else if (role.equals("supplier")) {
-                                                startActivity(new Intent(RegisterActivity.this, Supplier.class));
+                                                startActivity(new Intent(RegisterActivity.this, SupplierActivity.class));
                                             } else {
                                                 startActivity(new Intent(RegisterActivity.this, Customer.class));
                                             }

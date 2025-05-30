@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,16 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class UserAdapter extends ArrayAdapter<String> {
 
-    Context context;
-    ArrayList<String> emails;
-    ArrayList<String> uids;
+    private final Context context;
+    private final ArrayList<String> emails;
+    private final ArrayList<String> uids;
 
     public UserAdapter(Context context, ArrayList<String> emails, ArrayList<String> uids) {
+        super(context, R.layout.user_list_item, emails);
         this.context = context;
         this.emails = emails;
         this.uids = uids;
@@ -31,78 +34,65 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @NonNull
     @Override
-    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.user_list_item, parent, false);
-        return new UserViewHolder(view);
-    }
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        View view = convertView;
+        if (view == null) {
+            LayoutInflater inflater = LayoutInflater.from(context);
+            view = inflater.inflate(R.layout.user_list_item, parent, false);
 
-    @Override
-    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+        }
+
+        TextView userEmail = view.findViewById(R.id.userEmail);
+        Button btnReset = view.findViewById(R.id.btnResetPass);
+        Button btnDelete = view.findViewById(R.id.btnDelete);
+
         String email = emails.get(position);
         String uid = uids.get(position);
 
-        holder.userEmail.setText(email);
+        userEmail.setText(email);
 
-        holder.btnEdit.setOnClickListener(v ->
-                Toast.makeText(context, "Edit clicked for: " + email, Toast.LENGTH_SHORT).show()
-        );
-
-        holder.btnDelete.setOnClickListener(v -> {
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-            userRef.removeValue()
-                    .addOnSuccessListener(aVoid ->
-                            Toast.makeText(context, "User Deleted", Toast.LENGTH_SHORT).show()
-                    )
-                    .addOnFailureListener(e ->
-                            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show()
-                    );
+        btnReset.setOnClickListener(v -> {
+            new androidx.appcompat.app.AlertDialog.Builder(context)
+                    .setTitle("Reset Password")
+                    .setMessage("Send reset password email to " + email + "?")
+                    .setPositiveButton("Send", (dialog, which) -> {
+                        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                                .addOnSuccessListener(aVoid ->
+                                        Toast.makeText(context, "Failed to send reset email, please try again later", Toast.LENGTH_SHORT).show()
+                                );
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
         });
 
-        holder.itemView.setOnClickListener(v -> {
-            DatabaseReference enabledRef = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("enabled");
-            enabledRef.get().addOnSuccessListener(snapshot -> {
-                Boolean current = snapshot.getValue(Boolean.class);
-                if (current != null) {
-                    boolean newState = !current;
-                    enabledRef.setValue(newState);
-                    Toast.makeText(context, "User enabled set to: " + newState, Toast.LENGTH_SHORT).show();
-                }
-            });
+        btnDelete.setOnClickListener(v -> {
+            new androidx.appcompat.app.AlertDialog.Builder(context)
+                    .setTitle("Confirm Deletion")
+                    .setMessage("Are you sure you want to delete " + email + "?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+                        FirebaseFirestore.getInstance().collection("Users").document(uid)
+                                .delete()
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(context, "User successfully deleted", Toast.LENGTH_SHORT).show();
+                                    emails.remove(position);
+                                    uids.remove(position);
+                                    notifyDataSetChanged();
+                                })
+                                .addOnFailureListener(e ->
+                                        Toast.makeText(context, "Failed to delete user, please try again later", Toast.LENGTH_SHORT).show()
+                                );
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
         });
-
-        holder.itemView.setOnLongClickListener(v -> {
-            FirebaseDatabase.getInstance().getReference("Users").child(uid).child("email").get()
-                    .addOnSuccessListener(snap -> {
-                        String userEmail = snap.getValue(String.class);
-                        if (userEmail != null) {
-                            FirebaseAuth.getInstance().sendPasswordResetEmail(userEmail)
-                                    .addOnCompleteListener(task -> {
-                                        if (task.isSuccessful()) {
-                                            Toast.makeText(context, "Reset password email sent to: " + userEmail, Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(context, "Failed to send reset password email", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        }
-                    });
-            return true;
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return emails.size();
-    }
-
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
-        TextView userEmail;
-        Button btnEdit, btnDelete;
-
-        public UserViewHolder(@NonNull View itemView) {
-            super(itemView);
-            userEmail = itemView.findViewById(R.id.userEmail);
-            btnEdit = itemView.findViewById(R.id.btnEdit);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
-        }
+        return view;
     }
 }
+
+
+
+
+
+
+
+

@@ -3,7 +3,6 @@ package com.example.stockhive;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,27 +14,27 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
 public class Admin extends AppCompatActivity {
-// Admin Activity in progress.
-    ListView userList;
-    ArrayList<String> userEmails = new ArrayList<>();
-    ArrayList<String> userIds = new ArrayList<>();
-    DatabaseReference dbRef;
-    ArrayAdapter<String> adapter;
+
+    private ListView userList;
+    private ArrayList<String> userEmails = new ArrayList<>();
+    private ArrayList<String> userIds = new ArrayList<>();
+    private UserAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -43,10 +42,9 @@ public class Admin extends AppCompatActivity {
         });
 
         userList = findViewById(R.id.userList);
-        dbRef = FirebaseDatabase.getInstance().getReference("Users");
-
-       // (in progress) adapter = new ArrayAdapter<>(this, android.R.layout.user_list_item, userEmails);
+        adapter = new UserAdapter(this, userEmails, userIds);
         userList.setAdapter(adapter);
+
         loadUsers();
 
         userList.setOnItemClickListener((parent, view, position, id) -> {
@@ -62,50 +60,46 @@ public class Admin extends AppCompatActivity {
     }
 
     private void loadUsers() {
-        dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userEmails.clear();
-                userIds.clear();
+        FirebaseFirestore.getInstance().collection("Users")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    userEmails.clear();
+                    userIds.clear();
 
-                for (DataSnapshot child : snapshot.getChildren()) {
-                    String email = child.child("email").getValue(String.class);
-                    userEmails.add(email);
-                    userIds.add(child.getKey());
-                }
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        String email = doc.getString("email");
+                        String uid = doc.getId();
+                        if (email != null) {
+                            userEmails.add(email);
+                            userIds.add(uid);
+                        }
+                    }
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(Admin.this, android.R.layout.simple_list_item_1, userEmails);
-                userList.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Admin.this, "Error loading users", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(Admin.this, "Loaded users", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(Admin.this, "Error loading users", Toast.LENGTH_SHORT).show());
     }
 
     private void toggleUserEnabled(String uid) {
-        DatabaseReference userRef = dbRef.child(uid).child("enabled");
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("Users").document(uid);
 
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Boolean current = snapshot.getValue(Boolean.class);
-                if (current != null) {
-                    boolean newState = !current;
-                    userRef.setValue(newState);
-                    Toast.makeText(Admin.this, "User enabled set to: " + newState, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Admin.this, "User state not found", Toast.LENGTH_SHORT).show();
-                }
-            }
+        userRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                Boolean enabled = documentSnapshot.getBoolean("enabled");
+                boolean newState = enabled == null || !enabled;
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Admin.this, "Error updating user", Toast.LENGTH_SHORT).show();
+                userRef.update("enabled", newState)
+                        .addOnSuccessListener(aVoid ->
+                                Toast.makeText(Admin.this, "User enabled set to: " + newState, Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e ->
+                                Toast.makeText(Admin.this, "Failed to update user", Toast.LENGTH_SHORT).show());
+            } else {
+                Toast.makeText(Admin.this, "User not found", Toast.LENGTH_SHORT).show();
             }
-        });
+        }).addOnFailureListener(e ->
+                Toast.makeText(Admin.this, "Error reading user", Toast.LENGTH_SHORT).show());
     }
 
     private void resetUserPassword(String email) {
@@ -125,3 +119,8 @@ public class Admin extends AppCompatActivity {
         finish();
     }
 }
+
+
+
+
+
