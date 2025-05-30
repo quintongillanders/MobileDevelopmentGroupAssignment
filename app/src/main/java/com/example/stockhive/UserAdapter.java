@@ -58,7 +58,10 @@ public class UserAdapter extends ArrayAdapter<String> {
                     .setPositiveButton("Send", (dialog, which) -> {
                         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                                 .addOnSuccessListener(aVoid ->
-                                        Toast.makeText(context, "Failed to send reset email, please try again later", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, "Reset email sent successfully", Toast.LENGTH_SHORT).show()
+                                )
+                                .addOnFailureListener(e ->
+                                    Toast.makeText(context, "Failed to send reset email, please try again later", Toast.LENGTH_SHORT).show()
                                 );
                     })
                     .setNegativeButton("Cancel", null)
