@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2196F3"
+    android:background="#aeb3bf"
     tools:context=".Customer">
 
 
@@ -21,7 +21,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:onClick="logout"
-        android:text="Sign Out" />
+        android:text="Sign Out"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
     <Button
         android:id="@+id/customer_btn_cart"
@@ -30,7 +33,11 @@
         android:text="View Cart"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
 
     <androidx.appcompat.widget.SearchView

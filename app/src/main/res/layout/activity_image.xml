@@ -12,7 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_back"
-        android:text="Back"/>
+        android:text="Back"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:layout_margin="10dp"
+        android:textColor="#545454"/>
 
 
     <ImageView

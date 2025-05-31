@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#2196F3"
+    android:background="#aeb3bf"
     tools:context=".MainActivity">
 
 
@@ -15,43 +15,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Welcome To Stockhive"
-        android:textSize="30dp"
+        android:textSize="32dp"
         android:gravity="center"
+        android:paddingBottom="50dp"
+        android:fontFamily="@font/monobold"
         android:textStyle="bold"
-        android:textColor="#FFFCFC"/>
+        android:textColor="#21252e"/>
 
 
     <EditText
         android:id="@+id/email_login"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:hint="Email: "
         android:textStyle="bold"
         android:inputType="textPersonName"
-        android:textSize="25sp"/>
+        android:layout_marginBottom="16dp"
+        android:textSize="25sp"
+        android:fontFamily="@font/olort"
+        android:textColorHint="#21252e"/>
 
     <EditText
         android:id="@+id/pass_login"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:hint="Password: "
         android:textStyle="bold"
         android:inputType="textPassword"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:fontFamily="@font/olort"
+        android:textColorHint="#21252e"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="25sp"
-        android:id="@+id/btnLogin"/>
+        android:id="@+id/btnLogin"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"
+        android:layout_margin="20dp"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Register"
         android:textSize="25sp"
-        android:id="@+id/btnRegister"/>
+        android:id="@+id/btnRegister"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
 
 </LinearLayout>

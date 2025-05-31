@@ -6,56 +6,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#2196F3"
+    android:background="#aeb3bf"
     tools:context=".SupplierAddActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Product"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:paddingBottom="16dp"/>
-
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:id="@+id/btn_suplogout"
+        android:fontFamily="@font/monobold"
         android:onClick="logoutsup"
-        android:layout_gravity="end"
-        android:layout_marginBottom="16dp"/>
+        android:layout_margin="10dp"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add Products"
+        android:textSize="35dp"
+        android:fontFamily="@font/monobold"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+        android:textColor="#21252e"
+        />
 
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:hint="Type Item Name"
         android:id="@+id/edt_item"
-        android:textSize="25sp"/>
+        android:fontFamily="@font/olort"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        android:textColorHint="#21252e"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:hint="Item Quantity"
         android:id="@+id/edt_quantity"
-        android:textSize="25sp"/>
+        android:fontFamily="@font/olort"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        android:textColorHint="#21252e"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="ADD"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Add"
         android:id="@+id/btn_add"
-        android:onClick="addItem"/>
+        android:onClick="addItem"
+        android:textSize="20sp"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Delete Items"
         android:id="@+id/btn_deleteall"
-        android:onClick="deleteItems"/>
+        android:onClick="deleteItems"
+        android:textSize="20sp"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
 
     <androidx.recyclerview.widget.RecyclerView

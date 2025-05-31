@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#2196F3"
+    android:background="#aeb3bf"
     tools:context=".Supp">
 
 
@@ -15,36 +15,60 @@
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:id="@+id/btn_suplogout"
-        android:onClick="logoutsup"/>
+        android:onClick="logoutsup"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:hint="Type Item Name"
         android:id="@+id/edt_item"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/olort"
+        android:textColorHint="#21252e"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:hint="Item Quantity"
         android:id="@+id/edt_quantity"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/olort"
+        android:textColorHint="#21252e"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="ADD"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Add Item"
         android:id="@+id/btn_add"
-        android:onClick="addItem"/>
+        android:onClick="addItem"
+        android:textSize="20sp"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Delete Items"
+        android:layout_gravity="center"
+        android:text="Delete Item"
         android:id="@+id/btn_deleteall"
-        android:onClick="deleteItems"/>
+        android:onClick="deleteItems"
+        android:textSize="20sp"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
