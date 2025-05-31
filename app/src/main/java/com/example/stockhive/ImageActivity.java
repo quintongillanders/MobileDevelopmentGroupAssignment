@@ -52,8 +52,6 @@ public class ImageActivity extends AppCompatActivity {
         priceView.setText("Price: $"+ formattedPrice);
 
 
-
-
         BACK = findViewById(R.id.btn_back);
 
         BACK.setOnClickListener(new View.OnClickListener() {

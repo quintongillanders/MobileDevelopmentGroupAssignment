@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-//      Intent intent = new Intent(MainActivity.this, Admin.class);
-//        startActivity(intent);
+//      Intent intent = new Intent(MainActivity.this, SupplierAddActivity.class);
+//       startActivity(intent);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,76 +9,64 @@
     android:background="#2196F3"
     tools:context=".SupplierAddActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Product"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp"/>
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:id="@+id/btn_suplogout"
         android:onClick="logoutsup"
-        android:layout_margin="10dp"/>
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Add Product"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:layout_margin="50dp"
-        />
 
     <EditText
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Product Name"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        />
+        android:hint="Type Item Name"
+        android:id="@+id/edt_item"
+        android:textSize="25sp"/>
 
     <EditText
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        />
+        android:hint="Item Quantity"
+        android:id="@+id/edt_quantity"
+        android:textSize="25sp"/>
 
-    <EditText
-        android:layout_width="350dp"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="$0.00"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        />
+        android:text="ADD"
+        android:id="@+id/btn_add"
+        android:onClick="addItem"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Delete Items"
+        android:id="@+id/btn_deleteall"
+        android:onClick="deleteItems"/>
 
-        <Button
-            android:id="@+id/addBtn"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:text="Add Product"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            />
 
-        <Button
-            android:id="@+id/clearBtn"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:text="Clear Fields"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_view">
 
-    </LinearLayout>
+
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </LinearLayout>
