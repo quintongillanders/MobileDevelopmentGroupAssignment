@@ -11,6 +11,7 @@ import java.util.List;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SupplierAdapter extends RecyclerView.Adapter<HOLde1> {
+public class SupplierAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     private ArrayList<Item> itemList;
 
@@ -27,17 +28,21 @@ public class SupplierAdapter extends RecyclerView.Adapter<HOLde1> {
     @Override
     public HOLde1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new HOLde1(LayoutInflater.from(parent.getContext())
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ProductViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.supplier_items,parent,false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull HOLde1 holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Item item = itemList.get(position);
         holder.itemnameTV.setText(item.getItemname());
         holder.itemquantityTV.setText("Quantity:" +Integer.toString(item.getItemquantity()));
 
 
         holder.deleteBtn.setOnClickListener(v -> {
+        holder.btnDelete.setOnClickListener(v -> {
 
             FirebaseDatabase.getInstance().getReference()
                     .child("items")

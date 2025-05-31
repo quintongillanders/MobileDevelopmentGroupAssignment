@@ -42,7 +42,7 @@ public class SupplierActivity extends AppCompatActivity {
         btnAddProd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SupplierActivity.this, SupplierAddActivity.class);
+                Intent intent = new Intent(SupplierActivity.this, Supp.class);
                 startActivity(intent);
             }
         });
