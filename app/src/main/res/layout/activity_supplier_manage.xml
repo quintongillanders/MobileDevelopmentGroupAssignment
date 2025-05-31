@@ -6,16 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#2196F3"
+    android:background="#aeb3bf"
     tools:context=".SupplierManageActivity">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log Out"
-        android:id="@+id/btn_suplogout"
+        android:id="@+id/logoutBtn"
+        android:fontFamily="@font/monobold"
         android:onClick="logoutsup"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,61 +26,55 @@
         android:layout_gravity="center"
         android:text="Manage Products"
         android:textSize="35dp"
+        android:fontFamily="@font/monobold"
         android:textStyle="bold"
         android:layout_margin="20dp"
+        android:textColor="#21252e"
         />
 
     <EditText
+        android:id="@+id/nameTxt"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:hint="Product Name"
         android:layout_gravity="center"
+        android:fontFamily="@font/olort"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:layout_margin="10dp"
+        android:textColorHint="#21252e"
         />
 
     <EditText
+        android:id="@+id/quantTxt"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="Description"
+        android:hint="Quantity"
         android:layout_gravity="center"
+        android:fontFamily="@font/olort"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:layout_margin="10dp"
-        />
-
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:hint="$0.00"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
+        android:textColorHint="#21252e"
         />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <Button
-            android:id="@+id/addBtn"
+            android:id="@+id/updateBtn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Delete Product"
-            android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_margin="3dp"
-            />
-
-        <Button
-            android:id="@+id/clearBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:backgroundTint="#d1a736"
+            android:fontFamily="@font/monobold"
             android:text="Update Product"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:layout_margin="3dp"
-            />
+            android:textColor="#545454"
+            android:textSize="18dp" />
 
     </LinearLayout>
 

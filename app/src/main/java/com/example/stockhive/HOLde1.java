@@ -20,6 +20,5 @@ public class HOLde1 extends RecyclerView.ViewHolder {
 
         itemnameTV = itemView.findViewById(R.id.textview_itemname);
         itemquantityTV = itemView.findViewById(R.id.textview_itemquantity);
-        deleteBtn = itemView.findViewById(R.id.btn_delete);
     }
 }

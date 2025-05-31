@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#2196F3"
+    android:background="#aeb3bf"
     tools:context=".SupplierOverviewActivity">
 
     <Button
@@ -15,7 +15,10 @@
         android:text="Log Out"
         android:id="@+id/btn_suplogout"
         android:onClick="logoutsup"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,7 +27,9 @@
         android:text="Product Overview"
         android:textSize="35dp"
         android:textStyle="bold"
-        android:layout_margin="50dp"
+        android:layout_margin="45dp"
+        android:fontFamily="@font/monobold"
+        android:textColor="#21252e"
         />
 
     <androidx.recyclerview.widget.RecyclerView

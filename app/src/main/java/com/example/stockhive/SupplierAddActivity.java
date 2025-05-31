@@ -112,19 +112,10 @@ public class SupplierAddActivity extends AppCompatActivity {
         itemsRef.child(id).setValue(item)
                 .addOnSuccessListener(aVoid -> Toast.makeText(this, "Item added successfully", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(this, "Failed to add item: " + e.getMessage(), Toast.LENGTH_LONG).show());
+                itemET.setText("");
+                quantityET.setText("");
     }
 
-
-    public void deleteItems(View v){
-        reference.child("items").removeValue()
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Toast.makeText(this, "All Items Deleted", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(this, "Failed to Delete Items", Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
     public void logoutsup(View view) {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));

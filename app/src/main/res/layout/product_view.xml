@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
+    android:background="#aeb3bf"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
@@ -17,8 +18,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/product_tv_name"
         android:layout_toEndOf="@+id/product_iv_image"
-        android:textColor="@color/black"
+        android:fontFamily="@font/olort"
+        android:textStyle="bold"
+        android:textColor="#21252e"
         android:textSize="20dp"
+        android:layout_margin="5dp"
         tools:text="Product Name:"/>
 
     <TextView
@@ -27,8 +31,11 @@
         android:id="@+id/product_tv_description"
         android:layout_toEndOf="@+id/product_iv_image"
         android:layout_below="@+id/product_tv_name"
-        android:textColor="@color/black"
+        android:fontFamily="@font/olort"
+        android:textStyle="bold"
+        android:textColor="#21252e"
         android:textSize="20dp"
+        android:layout_margin="5dp"
         tools:text="Description:"/>
 
     <TextView
@@ -37,8 +44,11 @@
         android:id="@+id/product_tv_price"
         android:layout_toEndOf="@+id/product_iv_image"
         android:layout_below="@+id/product_tv_description"
-        android:textColor="@color/black"
+        android:fontFamily="@font/olort"
+        android:textStyle="bold"
+        android:textColor="#21252e"
         android:textSize="20dp"
+        android:layout_margin="5dp"
         tools:text="Price:"/>
 
     <Button
@@ -47,6 +57,9 @@
         android:layout_toEndOf="@+id/product_iv_image"
         android:layout_below="@+id/product_tv_price"
         android:text="Add To Cart"
+        android:fontFamily="@font/monobold"
+        android:backgroundTint="#d1a736"
+        android:textColor="#545454"
         android:id="@+id/product_btn_add"/>
 
 
@@ -56,6 +69,6 @@
         android:layout_height="2dp"
         android:layout_below="@+id/product_btn_add"
         android:layout_marginTop="10dp"
-        android:background="#DAD8D8"/>
+        android:background="#aeb3bf"/>
 
 </RelativeLayout>
