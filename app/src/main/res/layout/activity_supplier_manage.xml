@@ -75,6 +75,27 @@
             android:text="Update Product"
             android:textColor="#545454"
             android:textSize="18dp" />
+            android:text="Delete Product"
+            android:fontFamily="@font/monobold"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:backgroundTint="#d1a736"
+            android:textColor="#545454"
+            />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Update Product"
+            android:fontFamily="@font/monobold"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:backgroundTint="#d1a736"
+            android:textColor="#545454"
+            />
 
     </LinearLayout>
 
