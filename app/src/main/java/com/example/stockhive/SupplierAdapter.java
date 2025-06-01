@@ -81,6 +81,8 @@ public class SupplierAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     }
 
 
+
+
     @Override
     public int getItemCount() {
         return itemList.size();

@@ -118,7 +118,7 @@ public class SupplierAddActivity extends AppCompatActivity {
 
     public void logoutsup(View view) {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), SupplierActivity.class));
         finish();
     }
 }

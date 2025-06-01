@@ -55,4 +55,10 @@ public class SupplierActivity extends AppCompatActivity {
             }
         });
     }
+
+        public void logoutsup(View view) {
+            Intent intent = new Intent(SupplierActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+    }
 }

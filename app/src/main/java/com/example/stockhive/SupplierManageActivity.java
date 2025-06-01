@@ -1,6 +1,8 @@
 package com.example.stockhive;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -114,6 +116,13 @@ public class SupplierManageActivity extends AppCompatActivity {
 
         reference.child(selectedItemId).setValue(updatedItem)
                 .addOnSuccessListener(aVoid -> Toast.makeText(this, "Update successful!", Toast.LENGTH_SHORT).show());
+    }
+
+    public void logoutsup(View view) {
+        Intent intent = new Intent(SupplierManageActivity.this, SupplierActivity.class);
+        startActivity(intent);
+        finish();
+
     }
 }
 

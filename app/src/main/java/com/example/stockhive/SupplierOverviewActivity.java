@@ -1,6 +1,8 @@
 package com.example.stockhive;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -69,5 +71,12 @@ public class SupplierOverviewActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void logoutsup(View view) {
+        Intent intent = new Intent(SupplierOverviewActivity.this, SupplierActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
+
 

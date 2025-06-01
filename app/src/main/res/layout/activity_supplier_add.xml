@@ -70,19 +70,6 @@
         android:backgroundTint="#d1a736"
         android:textColor="#545454"/>
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Delete Items"
-        android:id="@+id/btn_deleteall"
-        android:onClick="deleteItems"
-        android:textSize="20sp"
-        android:fontFamily="@font/monobold"
-        android:backgroundTint="#d1a736"
-        android:textColor="#545454"/>
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
