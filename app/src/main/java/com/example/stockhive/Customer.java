@@ -59,18 +59,44 @@ public class Customer extends AppCompatActivity {
 
 
         Image image = new Image(R.drawable.a);
-        Product product = new Product("Product x1", "java", 100.0, image);
+        Product product = new Product("Laptop", "java", 500.0, image);
         ArrayList<Product> products = new ArrayList<>();
         products.add(product);
+
         image = new Image(R.drawable.b);
-        product = new Product("Product x2", "xml", 100.0, image);
+        product = new Product("iPhone 16", "xml", 1800.0, image);
         products.add(product);
-        image = new Image(R.drawable.b);
-        product = new Product("Product j3", "xml", 100.0, image);
+
+        image = new Image(R.drawable.c);
+        product = new Product("iPhone 16", "xml", 1800.0, image);
         products.add(product);
-        image = new Image(R.drawable.a);
-        product = new Product("Product j4", "java", 100.0, image);
+
+        image = new Image(R.drawable.d);
+        product = new Product("Nintendo Switch 2", "xml", 1500.0, image);
         products.add(product);
+
+        image = new Image(R.drawable.e);
+        product = new Product("Nintendo Switch OLED", "java", 1600.0, image);
+        products.add(product);
+
+
+        image = new Image(R.drawable.f);
+        product = new Product("Nintendo Switch Lite", "xml", 1700.0, image);
+        products.add(product);
+
+        image = new Image(R.drawable.g);
+        product = new Product("Samsung Smart TV", "xml", 2500.0, image);
+        products.add(product);
+
+        image = new Image(R.drawable.h);
+        product = new Product("iPhone 16 Pro", "java", 2500.0, image);
+        products.add(product);
+
+
+        image = new Image(R.drawable.i);
+        product = new Product("TV Remote", "xml", 100.0, image);
+        products.add(product);
+
 
         recyclerView = findViewById(R.id.customer_rv_products);
         ProductAdapter adapter = new ProductAdapter(products, this);

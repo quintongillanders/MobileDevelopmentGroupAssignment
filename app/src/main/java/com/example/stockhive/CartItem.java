@@ -23,7 +23,6 @@ public class CartItem implements Serializable {
     public Image getImage() {
         return product.getImage();
     }
-
     public int getQuantity() {
         return quantity;
     }
@@ -31,4 +30,6 @@ public class CartItem implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-}
+
+    }
+

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -20,8 +22,10 @@ public class CartActivity extends AppCompatActivity {
 
 
     TextView tvTotal;
-    Button btnBack, btnClearCart;
+    Button btnBack, btnClearCart, btnPurchase;
     ArrayList<CartItem> cartItems;
+
+    private CartAdapter adapter;
 
 
     @Override
@@ -39,10 +43,26 @@ public class CartActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.cart_btn_back);
         btnClearCart = findViewById(R.id.cart_btn_clear);
         tvTotal = findViewById(R.id.cart_tv_total);
+        btnPurchase = findViewById(R.id.cart_btn_purchase);
 
         cartItems = (ArrayList<CartItem>) getIntent().getSerializableExtra("cartItems");
-
         if (cartItems == null) cartItems = new ArrayList<>();
+
+        RecyclerView recyclerView = findViewById(R.id.cart_rv_products);
+
+        adapter = new CartAdapter(cartItems, new CartAdapter.OnRemoveClickListener() {
+            @Override
+            public void onRemoveClick(int position) {
+                cartItems.remove(position);
+                updateTotal();
+                Toast.makeText(CartActivity.this, "Item removed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         updateTotal();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -60,10 +80,6 @@ public class CartActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
         btnClearCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,8 +90,30 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+        btnPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cartItems.isEmpty()) {
+                    Toast.makeText(CartActivity.this, "Your cart is already empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                new androidx.appcompat.app.AlertDialog.Builder(CartActivity.this)
+                        .setTitle("Confirm Purchase")
+                        .setMessage("Are you sure you want to complete your transaction?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            cartItems.clear();
+                            updateTotal();
+                            Log.d("CartActivity", "Purchase successful, cart has been cleared.");
+                            Toast.makeText(CartActivity.this, "Purchase successful! Thank you!", Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
     }
+
+
 
     private void updateTotal() {
 
